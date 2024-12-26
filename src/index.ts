@@ -2,12 +2,13 @@ import express from "express";
 import "dotenv/config";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const app = express();
-app.use(express.json());
-const port = process.env.PORT;
-
 const genAI = new GoogleGenerativeAI(String(process.env.API_KEY));
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+const app = express();
+const port = process.env.PORT;
+
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Hello, world!");
